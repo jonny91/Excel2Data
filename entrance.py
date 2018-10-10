@@ -3,6 +3,7 @@ __author__ = "Jonny Hong"
 
 import config_reader
 import excel_reader
+import recorder
 
 
 class AppEntrance:
@@ -13,10 +14,14 @@ class AppEntrance:
     @staticmethod
     def read_excel():
         excel_reader.read_excels(config_reader.resPath)
-        pass
+
+    @staticmethod
+    def record_data():
+        recorder.record(config_reader.outputPath, str(excel_reader.all_data_dict))
 
 
 if __name__ == '__main__':
     entrance = AppEntrance()
     entrance.read_config()
     entrance.read_excel()
+    entrance.record_data()

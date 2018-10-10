@@ -4,6 +4,7 @@ __author__ = "Jonny Hong"
 from xlrd import open_workbook
 import os
 from os import path
+import sys
 
 all_data_dict = dict()
 
@@ -45,7 +46,12 @@ def read_excels(folder_path):
 def read_single_excel(excel_path):
     wb = open_workbook(excel_path)
     # excel_name_with_extension ==> abc.xlsx
-    excel_name_with_extension = excel_path[excel_path.rfind('/') + 1:]
+    # windows平台
+    if sys.platform.find("win") != -1:
+        excel_name_with_extension = excel_path[excel_path.rfind('\\') + 1:]
+    else:
+        excel_name_with_extension = excel_path[excel_path.rfind('/') + 1:]
+
     # excel_name ==> abc
     excel_name = excel_name_with_extension[:excel_name_with_extension.rfind('.')]
     all_data_dict[excel_name] = list()
@@ -72,3 +78,4 @@ def read_single_excel(excel_path):
                     pro[property_list[index]] = value_list[index]
                 single_data.append(pro)
             count += 1
+    all_data_dict[excel_name] = str(all_data_dict[excel_name])
