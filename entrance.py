@@ -4,6 +4,7 @@ __author__ = "Jonny Hong"
 import config_reader
 import excel_reader
 import recorder
+import json
 
 
 class AppEntrance:
@@ -17,7 +18,7 @@ class AppEntrance:
 
     @staticmethod
     def record_data():
-        recorder.record(config_reader.outputPath, str(excel_reader.all_data_dict))
+        recorder.record(config_reader.outputPath, json.dumps(excel_reader.all_data_dict))
 
 
 if __name__ == '__main__':

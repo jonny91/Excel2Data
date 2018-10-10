@@ -41,7 +41,7 @@ def read_excels(folder_path):
         else:
             read_single_excel(d)
 
-    print("数据 : %s " % all_data_dict)
+    print("%s 读取完毕" % folder_path)
 
 
 def read_single_excel(excel_path):
@@ -56,6 +56,7 @@ def read_single_excel(excel_path):
     # excel_name ==> abc
     excel_name = excel_name_with_extension[:excel_name_with_extension.rfind('.')]
     all_data_dict[excel_name] = list()
+    # single_data 单个excel的数据结构
     single_data = all_data_dict[excel_name]
     count = 0
     property_list = {}
@@ -66,6 +67,7 @@ def read_single_excel(excel_path):
                 pass
             # 数据类型
             elif count == 1:
+                type_list = row
                 pass
             # 变量名
             elif count == 2:
@@ -76,6 +78,24 @@ def read_single_excel(excel_path):
                 # 每一行的数据拼接结果
                 pro = {}
                 for index in range(len(value_list)):
-                    pro[property_list[index]] = value_list[index]
+                    if str(type_list[index]).lower() == "string":
+                        v = str(value_list[index])
+                        pass
+                    elif str(type_list[index]).lower() == "int":
+                        v = int(value_list[index])
+                        pass
+                    elif str(type_list[index]).lower() == "boolean":
+                        if value_list[index] == 0:
+                            v = False
+                        elif value_list[index] == 1:
+                            v = True
+                        else:
+                            print("bool 类型存在错误值 ")
+                        pass
+                    else:
+                        print("不支持的表类型 %s " % str(property_list[index]))
+
+                    pro[property_list[index]] = v
                 single_data.append(pro)
             count += 1
+    all_data_dict[excel_name] = json.dumps(all_data_dict[excel_name])
