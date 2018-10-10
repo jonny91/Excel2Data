@@ -5,6 +5,7 @@ from xlrd import open_workbook
 import os
 from os import path
 import sys
+import json
 
 all_data_dict = dict()
 
@@ -78,4 +79,3 @@ def read_single_excel(excel_path):
                     pro[property_list[index]] = value_list[index]
                 single_data.append(pro)
             count += 1
-    all_data_dict[excel_name] = str(all_data_dict[excel_name])
