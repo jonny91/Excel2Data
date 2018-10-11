@@ -56,11 +56,13 @@ def read_single_excel(excel_path):
     # excel_name ==> abc
     excel_name = excel_name_with_extension[:excel_name_with_extension.rfind('.')]
     all_data_dict[excel_name] = list()
+
     # single_data 单个excel的数据结构
     single_data = all_data_dict[excel_name]
     count = 0
     property_list = {}
     for s in wb.sheets():
+        # 每一行拆开
         for row in read_sheet(s):
             # 注释
             if count == 0:
@@ -78,12 +80,16 @@ def read_single_excel(excel_path):
                 # 每一行的数据拼接结果
                 pro = {}
                 for index in range(len(value_list)):
+                    # ctype : 0 empty,1 string, 2 number, 3 date, 4 boolean, 5 error
+                    ctype = s.cell(count, index).ctype
                     if str(type_list[index]).lower() == "string":
-                        v = str(value_list[index])
-                        pass
+                        if ctype == 2:
+                            v = int(value_list[index])
+                            v = str(v)
+                        else:
+                            v = str(value_list[index])
                     elif str(type_list[index]).lower() == "int":
                         v = int(value_list[index])
-                        pass
                     elif str(type_list[index]).lower() == "boolean":
                         if value_list[index] == 0:
                             v = False
@@ -98,4 +104,5 @@ def read_single_excel(excel_path):
                     pro[property_list[index]] = v
                 single_data.append(pro)
             count += 1
+
     all_data_dict[excel_name] = json.dumps(all_data_dict[excel_name])
