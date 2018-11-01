@@ -79,6 +79,7 @@ def read_single_excel(excel_path):
                 value_list = row
                 # 每一行的数据拼接结果
                 pro = {}
+
                 for index in range(len(value_list)):
                     # ctype : 0 empty,1 string, 2 number, 3 date, 4 boolean, 5 error
                     ctype = s.cell(count, index).ctype
