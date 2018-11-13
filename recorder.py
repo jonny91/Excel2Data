@@ -13,4 +13,4 @@ def record(file_path, content):
         content = gzip.compress(bytes(content, "utf-8"))
         f.write(content)
 
-        print("dat文件写入完成 => %s " % file_path)
+        print("dat file record complete => %s " % file_path)
