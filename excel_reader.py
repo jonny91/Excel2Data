@@ -41,7 +41,7 @@ def read_excels(folder_path):
         else:
             read_single_excel(d)
 
-    print("%s 读取完毕" % folder_path)
+    print("%s read complete " % folder_path)
 
 
 def read_single_excel(excel_path):
