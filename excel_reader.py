@@ -47,11 +47,11 @@ def read_excels(folder_path):
 def read_single_excel(excel_path):
     wb = open_workbook(excel_path)
     # excel_name_with_extension ==> abc.xlsx
-    # windows平台
-    if sys.platform.find("win") != -1:
-        excel_name_with_extension = excel_path[excel_path.rfind('\\') + 1:]
-    else:
+    # mac平台
+    if sys.platform.find("darwin") != -1:
         excel_name_with_extension = excel_path[excel_path.rfind('/') + 1:]
+    else:
+        excel_name_with_extension = excel_path[excel_path.rfind('\\') + 1:]
 
     # excel_name ==> abc
     excel_name = excel_name_with_extension[:excel_name_with_extension.rfind('.')]
