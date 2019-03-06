@@ -22,7 +22,6 @@ class AppEntrance:
 
 
 if __name__ == '__main__':
-    entrance = AppEntrance()
-    entrance.read_config()
-    entrance.read_excel()
-    entrance.record_data()
+    AppEntrance.read_config()
+    AppEntrance.read_excel()
+    AppEntrance.record_data()
