@@ -34,6 +34,8 @@ def read_excels(folder_path):
     os.chdir(folder_path)
     dirs = os.listdir(folder_path)
     for d in dirs:
+        if d.find(".svn") != -1:
+            continue
         d = path.join(folder_path, d)
         # 是文件夹的话 递归读取
         if path.isdir(d):
@@ -45,13 +47,15 @@ def read_excels(folder_path):
 
 
 def read_single_excel(excel_path):
+    if excel_path.find(".DS_Store") != -1:
+        return
     wb = open_workbook(excel_path)
     # excel_name_with_extension ==> abc.xlsx
-    # windows平台
-    if sys.platform.find("win") != -1:
-        excel_name_with_extension = excel_path[excel_path.rfind('\\') + 1:]
-    else:
+    # mac 平台
+    if sys.platform.find("darwin") != -1:
         excel_name_with_extension = excel_path[excel_path.rfind('/') + 1:]
+    else:
+        excel_name_with_extension = excel_path[excel_path.rfind('\\') + 1:]
 
     # excel_name ==> abc
     excel_name = excel_name_with_extension[:excel_name_with_extension.rfind('.')]
@@ -106,4 +110,5 @@ def read_single_excel(excel_path):
                 single_data.append(pro)
             count += 1
 
+    print(excel_name)
     all_data_dict[excel_name] = json.dumps(all_data_dict[excel_name])
