@@ -39,7 +39,9 @@ def read_excels(folder_path):
         d = path.join(folder_path, d)
         # 是文件夹的话 递归读取
         if path.isdir(d):
-            read_excels(d)
+            if d.find("other") == -1:
+                read_excels(d)
+
         else:
             read_single_excel(d)
 

@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(
-    name='Excel2Date',
+    name='Excel2Data',
     version='',
     packages=['venv.Lib.site-packages.xlrd', 'venv.Lib.site-packages.pip-10.0.1-py3.7.egg.pip',
               'venv.Lib.site-packages.pip-10.0.1-py3.7.egg.pip._vendor',
