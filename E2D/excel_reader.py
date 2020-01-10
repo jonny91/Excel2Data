@@ -49,9 +49,9 @@ def read_excels(folder_path):
 
 
 def read_single_excel(excel_path):
-    if excel_path.find(".DS_Store") != -1:
+    if excel_path.find(".DS_Store") != -1 or excel_path.find("~") != -1:
         return
-    wb = open_workbook(excel_path)
+    wb = open_workbook(excel_path, encoding_override='utf-8')
     # excel_name_with_extension ==> abc.xlsx
     # mac 平台
     if sys.platform.find("darwin") != -1:
@@ -113,4 +113,4 @@ def read_single_excel(excel_path):
             count += 1
 
     print(excel_name)
-    all_data_dict[excel_name] = json.dumps(all_data_dict[excel_name])
+    all_data_dict[excel_name] = json.dumps(all_data_dict[excel_name], ensure_ascii=False)

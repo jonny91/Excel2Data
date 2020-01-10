@@ -1,9 +1,7 @@
 # -*-coding:utf-8-*-
 __author__ = "Jonny Hong"
 
-import config_reader
-import excel_reader
-import recorder
+from E2D import recorder, config_reader, excel_reader
 import json
 
 
@@ -20,9 +18,20 @@ class AppEntrance:
     def record_data():
         recorder.record(config_reader.outputPath, json.dumps(excel_reader.all_data_dict))
 
+    @staticmethod
+    def write_single_json():
+        recorder.record_to_json(config_reader.outputJsonDirPath, excel_reader.all_data_dict)
 
-if __name__ == '__main__':
+
+def build(is_build_data=True, is_build_json=True):
     entrance = AppEntrance()
     entrance.read_config()
     entrance.read_excel()
-    entrance.record_data()
+    if is_build_data:
+        entrance.record_data()
+    if is_build_json:
+        entrance.write_single_json()
+
+
+if __name__ == '__main__':
+    build()

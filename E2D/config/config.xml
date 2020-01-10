@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data>
+    <res>/Users/Jonny/Documents/Project/MailingJoy/ChongSanGuo/excel</res>
+    <output>/Users/Jonny/Documents/Project/MailingJoy/ChongSanGuo/Client/chongsanguo/AssetVersionPack/Config/out/config.dat</output>
+    <outputJson>/Users/Jonny/Documents/Project/MailingJoy/ChongSanGuo/Client/chongsanguo/AssetVersionPack/Config/json/</outputJson>>
+
+<!--    <res>/Volumes/External/Project/MailingJoy/ChongSanGuo/excel</res>-->
+<!--    <output>/Volumes/External/Project/MailingJoy/ChongSanGuo/Client/chongsanguo/AssetVersionPack/Config/out/config.dat</output>-->
+</data>
