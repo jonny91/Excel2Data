@@ -5,7 +5,7 @@
 
 ## 安装
 ```
-    easy_install E2D-0.0.x-py3.7.egg
+    easy_install E2D-0.0.2-py3.7.egg
 ```
 
 ## 设置配置文件 config/config.xml
@@ -28,6 +28,3 @@
 | 1 | 只输出客户端数据|
 | 2 |只输出服务器数据|
 | 缺省值 | 都输出 |
-
-## Excel 特殊字段
-字段名以_起始的字段不会导出

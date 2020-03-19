@@ -87,6 +87,8 @@ def read_single_excel(excel_path):
                 pro = {}
 
                 for index in range(len(value_list)):
+                    if property_list[index][0] == '_':
+                        continue
                     # ctype : 0 empty,1 string, 2 number, 3 date, 4 boolean, 5 error
                     ctype = s.cell(count, index).ctype
                     if str(type_list[index]).lower() == "string":

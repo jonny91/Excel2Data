@@ -1,3 +1,6 @@
+# -*-coding:utf-8-*-
+__author__ = "Jonny Hong"
+
 from E2D import entrance
 import sys
 
