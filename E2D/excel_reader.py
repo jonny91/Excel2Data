@@ -116,6 +116,8 @@ def read_single_excel(excel_path):
                     pro[property_list[index]] = v
                 single_data.append(pro)
             count += 1
+        # 暂时先获取张表
+        break
 
     print(excel_name)
     all_data_dict[excel_name] = json.dumps(all_data_dict[excel_name], ensure_ascii=False)
