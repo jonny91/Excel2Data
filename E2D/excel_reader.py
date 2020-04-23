@@ -6,6 +6,7 @@ import os
 from os import path
 import sys
 import json
+import re
 
 all_data_dict = dict()
 
@@ -61,13 +62,21 @@ def read_single_excel(excel_path):
 
     # excel_name ==> abc
     excel_name = excel_name_with_extension[:excel_name_with_extension.rfind('.')]
-    all_data_dict[excel_name] = list()
 
-    # single_data 单个excel的数据结构
-    single_data = all_data_dict[excel_name]
-    count = 0
-    property_list = {}
     for s in wb.sheets():
+        sheet_name = s.name
+        re_result = re.match("^Sheet[0-9]|^_", sheet_name)
+        if re_result:
+            continue
+
+        all_data_dict[sheet_name] = list()
+        # single_data 单个sheet的数据结构
+        single_data = all_data_dict[sheet_name]
+        print(excel_name + "  --   " + sheet_name)
+        # 行数
+        count = 0
+        # 类型列表
+        property_list = {}
         # 每一行拆开
         for row in read_sheet(s):
             # 注释
@@ -116,8 +125,4 @@ def read_single_excel(excel_path):
                     pro[property_list[index]] = v
                 single_data.append(pro)
             count += 1
-        # 暂时先获取张表
-        break
-
-    print(excel_name)
-    all_data_dict[excel_name] = json.dumps(all_data_dict[excel_name], ensure_ascii=False)
+        all_data_dict[sheet_name] = json.dumps(all_data_dict[sheet_name], ensure_ascii=False)
