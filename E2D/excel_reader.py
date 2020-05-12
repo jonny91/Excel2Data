@@ -95,12 +95,14 @@ def read_single_excel(excel_path):
                 # 每一行的数据拼接结果
                 pro = {}
 
+                available = True
                 for index in range(len(value_list)):
                     if property_list[index] == "" or property_list[index][0] == '_':
                         continue
                     # ctype : 0 empty,1 string, 2 number, 3 date, 4 boolean, 5 error
                     ctype = s.cell(count, index).ctype
                     if ctype == 0:
+                        available = False
                         break
 
                     if str(type_list[index]).lower() == "string":
@@ -123,6 +125,7 @@ def read_single_excel(excel_path):
                         print("不支持的表类型 %s " % str(property_list[index]))
 
                     pro[property_list[index]] = v
-                single_data.append(pro)
+                if available:
+                    single_data.append(pro)
             count += 1
         all_data_dict[sheet_name] = json.dumps(all_data_dict[sheet_name], ensure_ascii=False)
